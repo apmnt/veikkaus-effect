@@ -1,4 +1,6 @@
 //> using scala "3.9.0"
 //> using jvm "26"
 //> using mainClass "Main"
+//> using exclude "tools"
 //> using dep "org.typelevel::cats-effect:3.7.1"
+//> using dep "com.thesamet.scalapb::scalapb-runtime:0.11.20"
