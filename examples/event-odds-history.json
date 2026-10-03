@@ -1,0 +1,69 @@
+{
+  "eventId": "1130340",
+  "homeName": "AEK Athens",
+  "awayName": "Marousi BC",
+  "oddsChanges": [
+    {
+      "observedAt": "2026-10-03T13:41:08.731097Z",
+      "marketId": "56286984",
+      "oddsType": "ODDS_TYPE_HANDICAP",
+      "side": "OUTCOME_SIDE_HOME",
+      "decimalOdds": "1.81",
+      "handicap": [
+        "-10.5"
+      ],
+      "active": true
+    },
+    {
+      "observedAt": "2026-10-03T13:41:08.731097Z",
+      "marketId": "56286984",
+      "oddsType": "ODDS_TYPE_HANDICAP",
+      "side": "OUTCOME_SIDE_AWAY",
+      "decimalOdds": "1.89",
+      "handicap": [
+        "+10.5"
+      ],
+      "active": true
+    },
+    {
+      "observedAt": "2026-10-03T13:41:08.731097Z",
+      "marketId": "56287011",
+      "oddsType": "ODDS_TYPE_WINNING",
+      "side": "OUTCOME_SIDE_AWAY",
+      "decimalOdds": "6.3",
+      "active": true
+    },
+    {
+      "observedAt": "2026-10-03T13:41:08.731097Z",
+      "marketId": "56287011",
+      "oddsType": "ODDS_TYPE_WINNING",
+      "side": "OUTCOME_SIDE_HOME",
+      "decimalOdds": "1.09",
+      "active": true
+    },
+    {
+      "observedAt": "2026-10-03T13:41:08.731097Z",
+      "marketId": "56287017",
+      "oddsType": "ODDS_TYPE_WINNING",
+      "side": "OUTCOME_SIDE_DRAW",
+      "decimalOdds": "12.7",
+      "active": true
+    },
+    {
+      "observedAt": "2026-10-03T13:41:08.731097Z",
+      "marketId": "56287017",
+      "oddsType": "ODDS_TYPE_WINNING",
+      "side": "OUTCOME_SIDE_AWAY",
+      "decimalOdds": "6.4",
+      "active": true
+    },
+    {
+      "observedAt": "2026-10-03T13:41:08.731097Z",
+      "marketId": "56287017",
+      "oddsType": "ODDS_TYPE_WINNING",
+      "side": "OUTCOME_SIDE_HOME",
+      "decimalOdds": "1.13",
+      "active": true
+    }
+  ]
+}

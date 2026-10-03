@@ -1,0 +1,533 @@
+{
+  "data": {
+    "events": [
+      {
+        "id": "1130340",
+        "name": "AEK Athens - Marousi BC",
+        "category": {
+          "id": "7",
+          "name": "Koripallo",
+          "displayOrder": "4",
+          "code": "BASKETBALL"
+        },
+        "teams": [
+          {
+            "id": null,
+            "side": "HOME",
+            "name": "AEK Athens",
+            "alternativeNames": [
+              {
+                "type": "FULL",
+                "value": "AEK Athens"
+              }
+            ],
+            "code": null,
+            "externalId": null,
+            "status": null
+          },
+          {
+            "id": null,
+            "side": "AWAY",
+            "name": "Marousi BC",
+            "alternativeNames": [
+              {
+                "type": "FULL",
+                "value": "Marousi BC"
+              }
+            ],
+            "code": null,
+            "externalId": null,
+            "status": null
+          }
+        ],
+        "active": true,
+        "displayed": true,
+        "status": "ACTIVE",
+        "markets": [
+          {
+            "id": "56286984",
+            "eventId": "1130340",
+            "templateMarketId": "5900",
+            "type": "H",
+            "subType": "WH",
+            "name": "Tasoitus -10,5 (sis. JA)",
+            "active": true,
+            "displayed": true,
+            "status": "ACTIVE",
+            "collectionIds": [
+              "1259",
+              "1261"
+            ],
+            "betInRun": true,
+            "rcpBetInRun": false,
+            "resulted": null,
+            "flags": [
+              "PRI"
+            ],
+            "displayOrder": 20,
+            "displaySortId": null,
+            "channels": [
+              "P",
+              "A",
+              "R",
+              "T",
+              "X",
+              "I",
+              "M",
+              "O"
+            ],
+            "handicapValue": -10.5,
+            "startingPriceAvailable": false,
+            "livePriceAvailable": true,
+            "cashoutAvailable": true,
+            "rcpAvailable": false,
+            "minimumAccumulator": 1,
+            "maximumAccumulator": 25,
+            "fixedOddsAvailable": true,
+            "groupCode": "HANDICAP_2_WAY",
+            "blurb": null,
+            "retailCode": "81965",
+            "eachWay": {
+              "available": false,
+              "numerator": 0,
+              "denominator": 0,
+              "places": 0
+            },
+            "castBetTypesAvailable": [],
+            "hasBoostedOutcome": false,
+            "globalTeamIds": [],
+            "globalPlayerIds": [],
+            "outcomes": [
+              {
+                "id": "155510657",
+                "marketId": "56286984",
+                "name": "AEK Athens",
+                "type": "WH",
+                "subType": "H",
+                "displayOrder": 1,
+                "active": true,
+                "displayed": true,
+                "status": "ACTIVE",
+                "channels": [
+                  "P",
+                  "A",
+                  "R",
+                  "T",
+                  "X",
+                  "I",
+                  "M",
+                  "O"
+                ],
+                "resulted": false,
+                "rcpAvailable": false,
+                "runnerNumber": 0,
+                "retailCode": null,
+                "lateVoid": false,
+                "fixedOddsAvailable": true,
+                "globalTeamIds": [],
+                "globalPlayerIds": [],
+                "outcomeScore": null,
+                "prices": [
+                  {
+                    "numerator": 81,
+                    "denominator": 100,
+                    "decimal": 1.81,
+                    "displayOrder": 1,
+                    "priceType": "LP",
+                    "handicapLow": "-10.5",
+                    "handicapHigh": "-10.5"
+                  }
+                ],
+                "result": {
+                  "resultCode": "-",
+                  "position": null
+                }
+              },
+              {
+                "id": "155510678",
+                "marketId": "56286984",
+                "name": "Marousi BC",
+                "type": "WH",
+                "subType": "A",
+                "displayOrder": 2,
+                "active": true,
+                "displayed": true,
+                "status": "ACTIVE",
+                "channels": [
+                  "P",
+                  "A",
+                  "R",
+                  "T",
+                  "X",
+                  "I",
+                  "M",
+                  "O"
+                ],
+                "resulted": false,
+                "rcpAvailable": false,
+                "runnerNumber": 0,
+                "retailCode": null,
+                "lateVoid": false,
+                "fixedOddsAvailable": true,
+                "globalTeamIds": [],
+                "globalPlayerIds": [],
+                "outcomeScore": null,
+                "prices": [
+                  {
+                    "numerator": 89,
+                    "denominator": 100,
+                    "decimal": 1.89,
+                    "displayOrder": 1,
+                    "priceType": "LP",
+                    "handicapLow": "+10.5",
+                    "handicapHigh": "+10.5"
+                  }
+                ],
+                "result": {
+                  "resultCode": "-",
+                  "position": null
+                }
+              }
+            ]
+          },
+          {
+            "id": "56287011",
+            "eventId": "1130340",
+            "templateMarketId": "5909",
+            "type": "-",
+            "subType": "HH",
+            "name": "Voittaja (lopullinen tulos)",
+            "active": true,
+            "displayed": true,
+            "status": "ACTIVE",
+            "collectionIds": [
+              "1259"
+            ],
+            "betInRun": true,
+            "rcpBetInRun": false,
+            "resulted": null,
+            "flags": [
+              "PRI"
+            ],
+            "displayOrder": 10,
+            "displaySortId": null,
+            "channels": [
+              "P",
+              "A",
+              "R",
+              "T",
+              "X",
+              "I",
+              "M",
+              "O"
+            ],
+            "handicapValue": null,
+            "startingPriceAvailable": false,
+            "livePriceAvailable": true,
+            "cashoutAvailable": true,
+            "rcpAvailable": false,
+            "minimumAccumulator": 1,
+            "maximumAccumulator": 25,
+            "fixedOddsAvailable": true,
+            "groupCode": "MONEY_LINE",
+            "blurb": null,
+            "retailCode": "69861",
+            "eachWay": {
+              "available": false,
+              "numerator": 0,
+              "denominator": 0,
+              "places": 0
+            },
+            "castBetTypesAvailable": [],
+            "hasBoostedOutcome": false,
+            "globalTeamIds": [],
+            "globalPlayerIds": [],
+            "outcomes": [
+              {
+                "id": "155510715",
+                "marketId": "56287011",
+                "name": "Marousi BC",
+                "type": "HH",
+                "subType": "A",
+                "displayOrder": 2,
+                "active": true,
+                "displayed": true,
+                "status": "ACTIVE",
+                "channels": [
+                  "P",
+                  "A",
+                  "R",
+                  "T",
+                  "X",
+                  "I",
+                  "M",
+                  "O"
+                ],
+                "resulted": false,
+                "rcpAvailable": false,
+                "runnerNumber": 0,
+                "retailCode": null,
+                "lateVoid": false,
+                "fixedOddsAvailable": true,
+                "globalTeamIds": [],
+                "globalPlayerIds": [],
+                "outcomeScore": null,
+                "prices": [
+                  {
+                    "numerator": 53,
+                    "denominator": 10,
+                    "decimal": 6.3,
+                    "displayOrder": 1,
+                    "priceType": "LP",
+                    "handicapLow": null,
+                    "handicapHigh": null
+                  }
+                ],
+                "result": {
+                  "resultCode": "-",
+                  "position": null
+                }
+              },
+              {
+                "id": "155510719",
+                "marketId": "56287011",
+                "name": "AEK Athens",
+                "type": "HH",
+                "subType": "H",
+                "displayOrder": 1,
+                "active": true,
+                "displayed": true,
+                "status": "ACTIVE",
+                "channels": [
+                  "P",
+                  "A",
+                  "R",
+                  "T",
+                  "X",
+                  "I",
+                  "M",
+                  "O"
+                ],
+                "resulted": false,
+                "rcpAvailable": false,
+                "runnerNumber": 0,
+                "retailCode": null,
+                "lateVoid": false,
+                "fixedOddsAvailable": true,
+                "globalTeamIds": [],
+                "globalPlayerIds": [],
+                "outcomeScore": null,
+                "prices": [
+                  {
+                    "numerator": 9,
+                    "denominator": 100,
+                    "decimal": 1.09,
+                    "displayOrder": 1,
+                    "priceType": "LP",
+                    "handicapLow": null,
+                    "handicapHigh": null
+                  }
+                ],
+                "result": {
+                  "resultCode": "-",
+                  "position": null
+                }
+              }
+            ]
+          },
+          {
+            "id": "56287017",
+            "eventId": "1130340",
+            "templateMarketId": "5932",
+            "type": "-",
+            "subType": "MR",
+            "name": "Voittaja 1X2 (varsinainen peliaika)",
+            "active": true,
+            "displayed": true,
+            "status": "ACTIVE",
+            "collectionIds": [
+              "1259"
+            ],
+            "betInRun": true,
+            "rcpBetInRun": false,
+            "resulted": null,
+            "flags": [
+              "PRI"
+            ],
+            "displayOrder": 15,
+            "displaySortId": null,
+            "channels": [
+              "P",
+              "A",
+              "R",
+              "T",
+              "X",
+              "I",
+              "M",
+              "O"
+            ],
+            "handicapValue": null,
+            "startingPriceAvailable": false,
+            "livePriceAvailable": true,
+            "cashoutAvailable": true,
+            "rcpAvailable": false,
+            "minimumAccumulator": 1,
+            "maximumAccumulator": 25,
+            "fixedOddsAvailable": true,
+            "groupCode": "MATCH_RESULT",
+            "blurb": null,
+            "retailCode": "8992",
+            "eachWay": {
+              "available": false,
+              "numerator": 0,
+              "denominator": 0,
+              "places": 0
+            },
+            "castBetTypesAvailable": [],
+            "hasBoostedOutcome": false,
+            "globalTeamIds": [],
+            "globalPlayerIds": [],
+            "outcomes": [
+              {
+                "id": "155510726",
+                "marketId": "56287017",
+                "name": "Tasapeli",
+                "type": "MR",
+                "subType": "D",
+                "displayOrder": 2,
+                "active": true,
+                "displayed": true,
+                "status": "ACTIVE",
+                "channels": [
+                  "P",
+                  "A",
+                  "R",
+                  "T",
+                  "X",
+                  "I",
+                  "M",
+                  "O"
+                ],
+                "resulted": false,
+                "rcpAvailable": false,
+                "runnerNumber": 0,
+                "retailCode": null,
+                "lateVoid": false,
+                "fixedOddsAvailable": true,
+                "globalTeamIds": [],
+                "globalPlayerIds": [],
+                "outcomeScore": null,
+                "prices": [
+                  {
+                    "numerator": 117,
+                    "denominator": 10,
+                    "decimal": 12.7,
+                    "displayOrder": 1,
+                    "priceType": "LP",
+                    "handicapLow": null,
+                    "handicapHigh": null
+                  }
+                ],
+                "result": {
+                  "resultCode": "-",
+                  "position": null
+                }
+              },
+              {
+                "id": "155510727",
+                "marketId": "56287017",
+                "name": "Marousi BC",
+                "type": "MR",
+                "subType": "A",
+                "displayOrder": 3,
+                "active": true,
+                "displayed": true,
+                "status": "ACTIVE",
+                "channels": [
+                  "P",
+                  "A",
+                  "R",
+                  "T",
+                  "X",
+                  "I",
+                  "M",
+                  "O"
+                ],
+                "resulted": false,
+                "rcpAvailable": false,
+                "runnerNumber": 0,
+                "retailCode": null,
+                "lateVoid": false,
+                "fixedOddsAvailable": true,
+                "globalTeamIds": [],
+                "globalPlayerIds": [],
+                "outcomeScore": null,
+                "prices": [
+                  {
+                    "numerator": 27,
+                    "denominator": 5,
+                    "decimal": 6.4,
+                    "displayOrder": 1,
+                    "priceType": "LP",
+                    "handicapLow": null,
+                    "handicapHigh": null
+                  }
+                ],
+                "result": {
+                  "resultCode": "-",
+                  "position": null
+                }
+              },
+              {
+                "id": "155510728",
+                "marketId": "56287017",
+                "name": "AEK Athens",
+                "type": "MR",
+                "subType": "H",
+                "displayOrder": 1,
+                "active": true,
+                "displayed": true,
+                "status": "ACTIVE",
+                "channels": [
+                  "P",
+                  "A",
+                  "R",
+                  "T",
+                  "X",
+                  "I",
+                  "M",
+                  "O"
+                ],
+                "resulted": false,
+                "rcpAvailable": false,
+                "runnerNumber": 0,
+                "retailCode": null,
+                "lateVoid": false,
+                "fixedOddsAvailable": true,
+                "globalTeamIds": [],
+                "globalPlayerIds": [],
+                "outcomeScore": null,
+                "prices": [
+                  {
+                    "numerator": 13,
+                    "denominator": 100,
+                    "decimal": 1.13,
+                    "displayOrder": 1,
+                    "priceType": "LP",
+                    "handicapLow": null,
+                    "handicapHigh": null
+                  }
+                ],
+                "result": {
+                  "resultCode": "-",
+                  "position": null
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "errors": []
+}
