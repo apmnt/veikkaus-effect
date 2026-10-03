@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package odds.v1;
+
+import "google/protobuf/timestamp.proto";
+import "odds/v1/odds_observation.proto";
+
+// Veikkaus basketball only. This schema is an unpublished draft.
+message EventOddsHistory {
+  string event_id = 1;
+  string home_name = 2;
+  string away_name = 3;
+  repeated OddsChange odds_changes = 4;
+}
+
+// One selection's state, keyed by (event_id, market_id, side).
+message OddsChange {
+  google.protobuf.Timestamp observed_at = 1;
+  // Keeps separate markets/periods distinct, including regulation vs overtime.
+  string market_id = 2;
+  OddsType odds_type = 3;
+  OutcomeSide side = 4;
+  // Exact decimal text; absent means no available quote.
+  optional string decimal_odds = 5;
+  // Signed decimal text: empty for winning, one value for a single handicap,
+  // two source components for a split handicap. Preserve source ordering.
+  repeated string handicap = 6;
+}
+
+enum OddsType {
+  ODDS_TYPE_UNSPECIFIED = 0;
+  ODDS_TYPE_WINNING = 1;
+  ODDS_TYPE_HANDICAP = 2;
+}

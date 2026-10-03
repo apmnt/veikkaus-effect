@@ -8,8 +8,13 @@ import scala.util.Using
 object GenerateTypes:
   def main(args: Array[String]): Unit =
     val root = Path.of(".").toAbsolutePath.normalize()
-    val schema = root.resolve("proto/odds/v1/odds_observation.proto")
-    require(Files.isRegularFile(schema), "Run this command from the project root.")
+    val protoRoot = root.resolve("proto")
+    require(Files.isDirectory(protoRoot), "Run this command from the project root.")
+    val schemas = Using.resource(Files.walk(protoRoot)) { paths =>
+      paths.filter(path => Files.isRegularFile(path) && path.toString.endsWith(".proto"))
+        .sorted().toArray.map(_.toString)
+    }
+    require(schemas.nonEmpty, "No .proto schemas found.")
 
     val output = root.resolve("generated/scala")
     val includes = root.resolve(".scala-build/protobuf-includes")
@@ -34,7 +39,6 @@ object GenerateTypes:
       s"--proto_path=${root.resolve("proto")}",
       s"--proto_path=$includes",
       s"--scala_out=flat_package,no_lenses:$output",
-      schema.toString
-    ))
+    ) ++ schemas)
 
     println(s"Generated Scala types in $output")

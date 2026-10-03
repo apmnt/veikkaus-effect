@@ -4,3 +4,4 @@
 //> using exclude "tools"
 //> using dep "org.typelevel::cats-effect:3.7.1"
 //> using dep "com.thesamet.scalapb::scalapb-runtime:0.11.20"
+//> using dep "com.lihaoyi::ujson:4.4.3"
