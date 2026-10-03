@@ -5,7 +5,7 @@
 
 package odds.v1
 
-/** Veikkaus basketball only. This schema is an unpublished draft.
+/** Veikkaus basketball only.
   */
 @SerialVersionUID(0L)
 final case class EventOddsHistory(

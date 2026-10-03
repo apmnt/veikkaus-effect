@@ -8,7 +8,6 @@ package odds.v1
 sealed abstract class OddsType(val value: _root_.scala.Int) extends _root_.scalapb.GeneratedEnum {
   type EnumType = odds.v1.OddsType
   type RecognizedType = odds.v1.OddsType.Recognized
-  def isOddsTypeUnspecified: _root_.scala.Boolean = false
   def isOddsTypeWinning: _root_.scala.Boolean = false
   def isOddsTypeHandicap: _root_.scala.Boolean = false
   def companion: _root_.scalapb.GeneratedEnumCompanion[OddsType] = odds.v1.OddsType
@@ -20,33 +19,25 @@ object OddsType extends _root_.scalapb.GeneratedEnumCompanion[OddsType] {
   implicit def enumCompanion: _root_.scalapb.GeneratedEnumCompanion[OddsType] = this
   
   @SerialVersionUID(0L)
-  case object ODDS_TYPE_UNSPECIFIED extends OddsType(0) with OddsType.Recognized {
+  case object ODDS_TYPE_WINNING extends OddsType(0) with OddsType.Recognized {
     val index = 0
-    val name = "ODDS_TYPE_UNSPECIFIED"
-    override def isOddsTypeUnspecified: _root_.scala.Boolean = true
-  }
-  
-  @SerialVersionUID(0L)
-  case object ODDS_TYPE_WINNING extends OddsType(1) with OddsType.Recognized {
-    val index = 1
     val name = "ODDS_TYPE_WINNING"
     override def isOddsTypeWinning: _root_.scala.Boolean = true
   }
   
   @SerialVersionUID(0L)
-  case object ODDS_TYPE_HANDICAP extends OddsType(2) with OddsType.Recognized {
-    val index = 2
+  case object ODDS_TYPE_HANDICAP extends OddsType(1) with OddsType.Recognized {
+    val index = 1
     val name = "ODDS_TYPE_HANDICAP"
     override def isOddsTypeHandicap: _root_.scala.Boolean = true
   }
   
   @SerialVersionUID(0L)
   final case class Unrecognized(unrecognizedValue: _root_.scala.Int) extends OddsType(unrecognizedValue) with _root_.scalapb.UnrecognizedEnum
-  lazy val values: scala.collection.immutable.Seq[ValueType] = scala.collection.immutable.Seq(ODDS_TYPE_UNSPECIFIED, ODDS_TYPE_WINNING, ODDS_TYPE_HANDICAP)
+  lazy val values: scala.collection.immutable.Seq[ValueType] = scala.collection.immutable.Seq(ODDS_TYPE_WINNING, ODDS_TYPE_HANDICAP)
   def fromValue(__value: _root_.scala.Int): OddsType = __value match {
-    case 0 => ODDS_TYPE_UNSPECIFIED
-    case 1 => ODDS_TYPE_WINNING
-    case 2 => ODDS_TYPE_HANDICAP
+    case 0 => ODDS_TYPE_WINNING
+    case 1 => ODDS_TYPE_HANDICAP
     case __other => Unrecognized(__other)
   }
   def javaDescriptor: _root_.com.google.protobuf.Descriptors.EnumDescriptor = odds.v1.EventOddsHistoryProto.javaDescriptor.getEnumTypes().get(0)

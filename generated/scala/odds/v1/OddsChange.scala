@@ -10,19 +10,22 @@ package odds.v1
   * @param marketId
   *   Keeps separate markets/periods distinct, including regulation vs overtime.
   * @param decimalOdds
-  *   Exact decimal text; absent means no available quote.
+  *   Exact quoted decimal text, retained even when inactive; absent means no quote.
   * @param handicap
   *   Signed decimal text: empty for winning, one value for a single handicap,
   *   two source components for a split handicap. Preserve source ordering.
+  * @param active
+  *   Derived from event, market and selection flags/status; not just outcome.active.
   */
 @SerialVersionUID(0L)
 final case class OddsChange(
     observedAt: _root_.scala.Option[com.google.protobuf.timestamp.Timestamp] = _root_.scala.None,
     marketId: _root_.scala.Predef.String = "",
-    oddsType: odds.v1.OddsType = odds.v1.OddsType.ODDS_TYPE_UNSPECIFIED,
-    side: odds.v1.OutcomeSide = odds.v1.OutcomeSide.OUTCOME_SIDE_UNSPECIFIED,
+    oddsType: odds.v1.OddsType = odds.v1.OddsType.ODDS_TYPE_WINNING,
+    side: odds.v1.OutcomeSide = odds.v1.OutcomeSide.OUTCOME_SIDE_HOME,
     decimalOdds: _root_.scala.Option[_root_.scala.Predef.String] = _root_.scala.None,
     handicap: _root_.scala.Seq[_root_.scala.Predef.String] = _root_.scala.Seq.empty,
+    active: _root_.scala.Boolean = false,
     unknownFields: _root_.scalapb.UnknownFieldSet = _root_.scalapb.UnknownFieldSet.empty
     ) extends scalapb.GeneratedMessage {
     @transient
@@ -62,6 +65,13 @@ final case class OddsChange(
         val __value = __item
         __size += _root_.com.google.protobuf.CodedOutputStream.computeStringSize(6, __value)
       }
+      
+      {
+        val __value = active
+        if (__value != false) {
+          __size += _root_.com.google.protobuf.CodedOutputStream.computeBoolSize(7, __value)
+        }
+      };
       __size += unknownFields.serializedSize
       __size
     }
@@ -107,6 +117,12 @@ final case class OddsChange(
         val __m = __v
         _output__.writeString(6, __m)
       };
+      {
+        val __v = active
+        if (__v != false) {
+          _output__.writeBool(7, __v)
+        }
+      };
       unknownFields.writeTo(_output__)
     }
     def getObservedAt: com.google.protobuf.timestamp.Timestamp = observedAt.getOrElse(com.google.protobuf.timestamp.Timestamp.defaultInstance)
@@ -122,6 +138,7 @@ final case class OddsChange(
     def addHandicap(__vs: _root_.scala.Predef.String *): OddsChange = addAllHandicap(__vs)
     def addAllHandicap(__vs: Iterable[_root_.scala.Predef.String]): OddsChange = copy(handicap = handicap ++ __vs)
     def withHandicap(__v: _root_.scala.Seq[_root_.scala.Predef.String]): OddsChange = copy(handicap = __v)
+    def withActive(__v: _root_.scala.Boolean): OddsChange = copy(active = __v)
     def withUnknownFields(__v: _root_.scalapb.UnknownFieldSet) = copy(unknownFields = __v)
     def discardUnknownFields = copy(unknownFields = _root_.scalapb.UnknownFieldSet.empty)
     def getFieldByNumber(__fieldNumber: _root_.scala.Int): _root_.scala.Any = {
@@ -141,6 +158,10 @@ final case class OddsChange(
         }
         case 5 => decimalOdds.orNull
         case 6 => handicap
+        case 7 => {
+          val __t = active
+          if (__t != false) __t else null
+        }
       }
     }
     def getField(__field: _root_.scalapb.descriptors.FieldDescriptor): _root_.scalapb.descriptors.PValue = {
@@ -152,6 +173,7 @@ final case class OddsChange(
         case 4 => _root_.scalapb.descriptors.PEnum(side.scalaValueDescriptor)
         case 5 => decimalOdds.map(_root_.scalapb.descriptors.PString(_)).getOrElse(_root_.scalapb.descriptors.PEmpty)
         case 6 => _root_.scalapb.descriptors.PRepeated(handicap.iterator.map(_root_.scalapb.descriptors.PString(_)).toVector)
+        case 7 => _root_.scalapb.descriptors.PBoolean(active)
       }
     }
     def toProtoString: _root_.scala.Predef.String = _root_.scalapb.TextFormat.printToUnicodeString(this)
@@ -164,10 +186,11 @@ object OddsChange extends scalapb.GeneratedMessageCompanion[odds.v1.OddsChange] 
   def parseFrom(`_input__`: _root_.com.google.protobuf.CodedInputStream): odds.v1.OddsChange = {
     var __observedAt: _root_.scala.Option[com.google.protobuf.timestamp.Timestamp] = _root_.scala.None
     var __marketId: _root_.scala.Predef.String = ""
-    var __oddsType: odds.v1.OddsType = odds.v1.OddsType.ODDS_TYPE_UNSPECIFIED
-    var __side: odds.v1.OutcomeSide = odds.v1.OutcomeSide.OUTCOME_SIDE_UNSPECIFIED
+    var __oddsType: odds.v1.OddsType = odds.v1.OddsType.ODDS_TYPE_WINNING
+    var __side: odds.v1.OutcomeSide = odds.v1.OutcomeSide.OUTCOME_SIDE_HOME
     var __decimalOdds: _root_.scala.Option[_root_.scala.Predef.String] = _root_.scala.None
     val __handicap: _root_.scala.collection.immutable.VectorBuilder[_root_.scala.Predef.String] = new _root_.scala.collection.immutable.VectorBuilder[_root_.scala.Predef.String]
+    var __active: _root_.scala.Boolean = false
     var `_unknownFields__`: _root_.scalapb.UnknownFieldSet.Builder = null
     var _done__ = false
     while (!_done__) {
@@ -186,6 +209,8 @@ object OddsChange extends scalapb.GeneratedMessageCompanion[odds.v1.OddsChange] 
           __decimalOdds = _root_.scala.Option(_input__.readStringRequireUtf8())
         case 50 =>
           __handicap += _input__.readStringRequireUtf8()
+        case 56 =>
+          __active = _input__.readBool()
         case tag =>
           if (_unknownFields__ == null) {
             _unknownFields__ = new _root_.scalapb.UnknownFieldSet.Builder()
@@ -200,6 +225,7 @@ object OddsChange extends scalapb.GeneratedMessageCompanion[odds.v1.OddsChange] 
         side = __side,
         decimalOdds = __decimalOdds,
         handicap = __handicap.result(),
+        active = __active,
         unknownFields = if (_unknownFields__ == null) _root_.scalapb.UnknownFieldSet.empty else _unknownFields__.result()
     )
   }
@@ -209,10 +235,11 @@ object OddsChange extends scalapb.GeneratedMessageCompanion[odds.v1.OddsChange] 
       odds.v1.OddsChange(
         observedAt = __fieldsMap.get(scalaDescriptor.findFieldByNumber(1).get).flatMap(_.as[_root_.scala.Option[com.google.protobuf.timestamp.Timestamp]]),
         marketId = __fieldsMap.get(scalaDescriptor.findFieldByNumber(2).get).map(_.as[_root_.scala.Predef.String]).getOrElse(""),
-        oddsType = odds.v1.OddsType.fromValue(__fieldsMap.get(scalaDescriptor.findFieldByNumber(3).get).map(_.as[_root_.scalapb.descriptors.EnumValueDescriptor]).getOrElse(odds.v1.OddsType.ODDS_TYPE_UNSPECIFIED.scalaValueDescriptor).number),
-        side = odds.v1.OutcomeSide.fromValue(__fieldsMap.get(scalaDescriptor.findFieldByNumber(4).get).map(_.as[_root_.scalapb.descriptors.EnumValueDescriptor]).getOrElse(odds.v1.OutcomeSide.OUTCOME_SIDE_UNSPECIFIED.scalaValueDescriptor).number),
+        oddsType = odds.v1.OddsType.fromValue(__fieldsMap.get(scalaDescriptor.findFieldByNumber(3).get).map(_.as[_root_.scalapb.descriptors.EnumValueDescriptor]).getOrElse(odds.v1.OddsType.ODDS_TYPE_WINNING.scalaValueDescriptor).number),
+        side = odds.v1.OutcomeSide.fromValue(__fieldsMap.get(scalaDescriptor.findFieldByNumber(4).get).map(_.as[_root_.scalapb.descriptors.EnumValueDescriptor]).getOrElse(odds.v1.OutcomeSide.OUTCOME_SIDE_HOME.scalaValueDescriptor).number),
         decimalOdds = __fieldsMap.get(scalaDescriptor.findFieldByNumber(5).get).flatMap(_.as[_root_.scala.Option[_root_.scala.Predef.String]]),
-        handicap = __fieldsMap.get(scalaDescriptor.findFieldByNumber(6).get).map(_.as[_root_.scala.Seq[_root_.scala.Predef.String]]).getOrElse(_root_.scala.Seq.empty)
+        handicap = __fieldsMap.get(scalaDescriptor.findFieldByNumber(6).get).map(_.as[_root_.scala.Seq[_root_.scala.Predef.String]]).getOrElse(_root_.scala.Seq.empty),
+        active = __fieldsMap.get(scalaDescriptor.findFieldByNumber(7).get).map(_.as[_root_.scala.Boolean]).getOrElse(false)
       )
     case _ => throw new RuntimeException("Expected PMessage")
   }
@@ -235,10 +262,11 @@ object OddsChange extends scalapb.GeneratedMessageCompanion[odds.v1.OddsChange] 
   lazy val defaultInstance = odds.v1.OddsChange(
     observedAt = _root_.scala.None,
     marketId = "",
-    oddsType = odds.v1.OddsType.ODDS_TYPE_UNSPECIFIED,
-    side = odds.v1.OutcomeSide.OUTCOME_SIDE_UNSPECIFIED,
+    oddsType = odds.v1.OddsType.ODDS_TYPE_WINNING,
+    side = odds.v1.OutcomeSide.OUTCOME_SIDE_HOME,
     decimalOdds = _root_.scala.None,
-    handicap = _root_.scala.Seq.empty
+    handicap = _root_.scala.Seq.empty,
+    active = false
   )
   final val OBSERVED_AT_FIELD_NUMBER = 1
   final val MARKET_ID_FIELD_NUMBER = 2
@@ -246,20 +274,23 @@ object OddsChange extends scalapb.GeneratedMessageCompanion[odds.v1.OddsChange] 
   final val SIDE_FIELD_NUMBER = 4
   final val DECIMAL_ODDS_FIELD_NUMBER = 5
   final val HANDICAP_FIELD_NUMBER = 6
+  final val ACTIVE_FIELD_NUMBER = 7
   def of(
     observedAt: _root_.scala.Option[com.google.protobuf.timestamp.Timestamp],
     marketId: _root_.scala.Predef.String,
     oddsType: odds.v1.OddsType,
     side: odds.v1.OutcomeSide,
     decimalOdds: _root_.scala.Option[_root_.scala.Predef.String],
-    handicap: _root_.scala.Seq[_root_.scala.Predef.String]
+    handicap: _root_.scala.Seq[_root_.scala.Predef.String],
+    active: _root_.scala.Boolean
   ): _root_.odds.v1.OddsChange = _root_.odds.v1.OddsChange(
     observedAt,
     marketId,
     oddsType,
     side,
     decimalOdds,
-    handicap
+    handicap,
+    active
   )
   // @@protoc_insertion_point(GeneratedMessageCompanion[odds.v1.OddsChange])
 }

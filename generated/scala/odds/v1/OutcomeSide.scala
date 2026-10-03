@@ -8,7 +8,6 @@ package odds.v1
 sealed abstract class OutcomeSide(val value: _root_.scala.Int) extends _root_.scalapb.GeneratedEnum {
   type EnumType = odds.v1.OutcomeSide
   type RecognizedType = odds.v1.OutcomeSide.Recognized
-  def isOutcomeSideUnspecified: _root_.scala.Boolean = false
   def isOutcomeSideHome: _root_.scala.Boolean = false
   def isOutcomeSideAway: _root_.scala.Boolean = false
   def isOutcomeSideDraw: _root_.scala.Boolean = false
@@ -21,43 +20,35 @@ object OutcomeSide extends _root_.scalapb.GeneratedEnumCompanion[OutcomeSide] {
   implicit def enumCompanion: _root_.scalapb.GeneratedEnumCompanion[OutcomeSide] = this
   
   @SerialVersionUID(0L)
-  case object OUTCOME_SIDE_UNSPECIFIED extends OutcomeSide(0) with OutcomeSide.Recognized {
+  case object OUTCOME_SIDE_HOME extends OutcomeSide(0) with OutcomeSide.Recognized {
     val index = 0
-    val name = "OUTCOME_SIDE_UNSPECIFIED"
-    override def isOutcomeSideUnspecified: _root_.scala.Boolean = true
-  }
-  
-  @SerialVersionUID(0L)
-  case object OUTCOME_SIDE_HOME extends OutcomeSide(1) with OutcomeSide.Recognized {
-    val index = 1
     val name = "OUTCOME_SIDE_HOME"
     override def isOutcomeSideHome: _root_.scala.Boolean = true
   }
   
   @SerialVersionUID(0L)
-  case object OUTCOME_SIDE_AWAY extends OutcomeSide(2) with OutcomeSide.Recognized {
-    val index = 2
+  case object OUTCOME_SIDE_AWAY extends OutcomeSide(1) with OutcomeSide.Recognized {
+    val index = 1
     val name = "OUTCOME_SIDE_AWAY"
     override def isOutcomeSideAway: _root_.scala.Boolean = true
   }
   
   @SerialVersionUID(0L)
-  case object OUTCOME_SIDE_DRAW extends OutcomeSide(3) with OutcomeSide.Recognized {
-    val index = 3
+  case object OUTCOME_SIDE_DRAW extends OutcomeSide(2) with OutcomeSide.Recognized {
+    val index = 2
     val name = "OUTCOME_SIDE_DRAW"
     override def isOutcomeSideDraw: _root_.scala.Boolean = true
   }
   
   @SerialVersionUID(0L)
   final case class Unrecognized(unrecognizedValue: _root_.scala.Int) extends OutcomeSide(unrecognizedValue) with _root_.scalapb.UnrecognizedEnum
-  lazy val values: scala.collection.immutable.Seq[ValueType] = scala.collection.immutable.Seq(OUTCOME_SIDE_UNSPECIFIED, OUTCOME_SIDE_HOME, OUTCOME_SIDE_AWAY, OUTCOME_SIDE_DRAW)
+  lazy val values: scala.collection.immutable.Seq[ValueType] = scala.collection.immutable.Seq(OUTCOME_SIDE_HOME, OUTCOME_SIDE_AWAY, OUTCOME_SIDE_DRAW)
   def fromValue(__value: _root_.scala.Int): OutcomeSide = __value match {
-    case 0 => OUTCOME_SIDE_UNSPECIFIED
-    case 1 => OUTCOME_SIDE_HOME
-    case 2 => OUTCOME_SIDE_AWAY
-    case 3 => OUTCOME_SIDE_DRAW
+    case 0 => OUTCOME_SIDE_HOME
+    case 1 => OUTCOME_SIDE_AWAY
+    case 2 => OUTCOME_SIDE_DRAW
     case __other => Unrecognized(__other)
   }
-  def javaDescriptor: _root_.com.google.protobuf.Descriptors.EnumDescriptor = odds.v1.OddsObservationProto.javaDescriptor.getEnumTypes().get(0)
-  def scalaDescriptor: _root_.scalapb.descriptors.EnumDescriptor = odds.v1.OddsObservationProto.scalaDescriptor.enums(0)
+  def javaDescriptor: _root_.com.google.protobuf.Descriptors.EnumDescriptor = odds.v1.EventOddsHistoryProto.javaDescriptor.getEnumTypes().get(1)
+  def scalaDescriptor: _root_.scalapb.descriptors.EnumDescriptor = odds.v1.EventOddsHistoryProto.scalaDescriptor.enums(1)
 }

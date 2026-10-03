@@ -7,8 +7,7 @@ package odds.v1
 
 object EventOddsHistoryProto extends _root_.scalapb.GeneratedFileObject {
   lazy val dependencies: Seq[_root_.scalapb.GeneratedFileObject] = Seq(
-    com.google.protobuf.timestamp.TimestampProto,
-    odds.v1.OddsObservationProto
+    com.google.protobuf.timestamp.TimestampProto
   )
   lazy val messagesCompanions: Seq[_root_.scalapb.GeneratedMessageCompanion[_ <: _root_.scalapb.GeneratedMessage]] =
     Seq[_root_.scalapb.GeneratedMessageCompanion[_ <: _root_.scalapb.GeneratedMessage]](
@@ -18,17 +17,19 @@ object EventOddsHistoryProto extends _root_.scalapb.GeneratedFileObject {
   private lazy val ProtoBytes: _root_.scala.Array[Byte] =
       scalapb.Encoding.fromBase64(scala.collection.immutable.Seq(
   """CiBvZGRzL3YxL2V2ZW50X29kZHNfaGlzdG9yeS5wcm90bxIHb2Rkcy52MRofZ29vZ2xlL3Byb3RvYnVmL3RpbWVzdGFtcC5wc
-  m90bxoeb2Rkcy92MS9vZGRzX29ic2VydmF0aW9uLnByb3RvIt0BChBFdmVudE9kZHNIaXN0b3J5EicKCGV2ZW50X2lkGAEgASgJQ
-  gziPwkSB2V2ZW50SWRSB2V2ZW50SWQSKgoJaG9tZV9uYW1lGAIgASgJQg3iPwoSCGhvbWVOYW1lUghob21lTmFtZRIqCglhd2F5X
-  25hbWUYAyABKAlCDeI/ChIIYXdheU5hbWVSCGF3YXlOYW1lEkgKDG9kZHNfY2hhbmdlcxgEIAMoCzITLm9kZHMudjEuT2Rkc0NoY
-  W5nZUIQ4j8NEgtvZGRzQ2hhbmdlc1ILb2Rkc0NoYW5nZXMi8AIKCk9kZHNDaGFuZ2USTAoLb2JzZXJ2ZWRfYXQYASABKAsyGi5nb
-  29nbGUucHJvdG9idWYuVGltZXN0YW1wQg/iPwwSCm9ic2VydmVkQXRSCm9ic2VydmVkQXQSKgoJbWFya2V0X2lkGAIgASgJQg3iP
-  woSCG1hcmtldElkUghtYXJrZXRJZBI9CglvZGRzX3R5cGUYAyABKA4yES5vZGRzLnYxLk9kZHNUeXBlQg3iPwoSCG9kZHNUeXBlU
-  ghvZGRzVHlwZRIzCgRzaWRlGAQgASgOMhQub2Rkcy52MS5PdXRjb21lU2lkZUIJ4j8GEgRzaWRlUgRzaWRlEjgKDGRlY2ltYWxfb
-  2RkcxgFIAEoCUIQ4j8NEgtkZWNpbWFsT2Rkc0gAUgtkZWNpbWFsT2Rkc4gBARIpCghoYW5kaWNhcBgGIAMoCUIN4j8KEghoYW5ka
-  WNhcFIIaGFuZGljYXBCDwoNX2RlY2ltYWxfb2RkcyqhAQoIT2Rkc1R5cGUSNQoVT0REU19UWVBFX1VOU1BFQ0lGSUVEEAAaGuI/F
-  xIVT0REU19UWVBFX1VOU1BFQ0lGSUVEEi0KEU9ERFNfVFlQRV9XSU5OSU5HEAEaFuI/ExIRT0REU19UWVBFX1dJTk5JTkcSLwoST
-  0REU19UWVBFX0hBTkRJQ0FQEAIaF+I/FBIST0REU19UWVBFX0hBTkRJQ0FQYgZwcm90bzM="""
+  m90byLdAQoQRXZlbnRPZGRzSGlzdG9yeRInCghldmVudF9pZBgBIAEoCUIM4j8JEgdldmVudElkUgdldmVudElkEioKCWhvbWVfb
+  mFtZRgCIAEoCUIN4j8KEghob21lTmFtZVIIaG9tZU5hbWUSKgoJYXdheV9uYW1lGAMgASgJQg3iPwoSCGF3YXlOYW1lUghhd2F5T
+  mFtZRJICgxvZGRzX2NoYW5nZXMYBCADKAsyEy5vZGRzLnYxLk9kZHNDaGFuZ2VCEOI/DRILb2Rkc0NoYW5nZXNSC29kZHNDaGFuZ
+  2VzIpUDCgpPZGRzQ2hhbmdlEkwKC29ic2VydmVkX2F0GAEgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEIP4j8MEgpvY
+  nNlcnZlZEF0UgpvYnNlcnZlZEF0EioKCW1hcmtldF9pZBgCIAEoCUIN4j8KEghtYXJrZXRJZFIIbWFya2V0SWQSPQoJb2Rkc190e
+  XBlGAMgASgOMhEub2Rkcy52MS5PZGRzVHlwZUIN4j8KEghvZGRzVHlwZVIIb2Rkc1R5cGUSMwoEc2lkZRgEIAEoDjIULm9kZHMud
+  jEuT3V0Y29tZVNpZGVCCeI/BhIEc2lkZVIEc2lkZRI4CgxkZWNpbWFsX29kZHMYBSABKAlCEOI/DRILZGVjaW1hbE9kZHNIAFILZ
+  GVjaW1hbE9kZHOIAQESKQoIaGFuZGljYXAYBiADKAlCDeI/ChIIaGFuZGljYXBSCGhhbmRpY2FwEiMKBmFjdGl2ZRgHIAEoCEIL4
+  j8IEgZhY3RpdmVSBmFjdGl2ZUIPCg1fZGVjaW1hbF9vZGRzKmoKCE9kZHNUeXBlEi0KEU9ERFNfVFlQRV9XSU5OSU5HEAAaFuI/E
+  xIRT0REU19UWVBFX1dJTk5JTkcSLwoST0REU19UWVBFX0hBTkRJQ0FQEAEaF+I/FBIST0REU19UWVBFX0hBTkRJQ0FQKpoBCgtPd
+  XRjb21lU2lkZRItChFPVVRDT01FX1NJREVfSE9NRRAAGhbiPxMSEU9VVENPTUVfU0lERV9IT01FEi0KEU9VVENPTUVfU0lERV9BV
+  0FZEAEaFuI/ExIRT1VUQ09NRV9TSURFX0FXQVkSLQoRT1VUQ09NRV9TSURFX0RSQVcQAhoW4j8TEhFPVVRDT01FX1NJREVfRFJBV
+  2IGcHJvdG8z"""
       ).mkString)
   lazy val scalaDescriptor: _root_.scalapb.descriptors.FileDescriptor = {
     val scalaProto = com.google.protobuf.descriptor.FileDescriptorProto.parseFrom(ProtoBytes)
@@ -37,8 +38,7 @@ object EventOddsHistoryProto extends _root_.scalapb.GeneratedFileObject {
   lazy val javaDescriptor: com.google.protobuf.Descriptors.FileDescriptor = {
     val javaProto = com.google.protobuf.DescriptorProtos.FileDescriptorProto.parseFrom(ProtoBytes)
     com.google.protobuf.Descriptors.FileDescriptor.buildFrom(javaProto, _root_.scala.Array(
-      com.google.protobuf.timestamp.TimestampProto.javaDescriptor,
-      odds.v1.OddsObservationProto.javaDescriptor
+      com.google.protobuf.timestamp.TimestampProto.javaDescriptor
     ))
   }
   @deprecated("Use javaDescriptor instead. In a future version this will refer to scalaDescriptor.", "ScalaPB 0.5.47")

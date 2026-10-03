@@ -3,9 +3,8 @@ syntax = "proto3";
 package odds.v1;
 
 import "google/protobuf/timestamp.proto";
-import "odds/v1/odds_observation.proto";
 
-// Veikkaus basketball only. This schema is an unpublished draft.
+// Veikkaus basketball only.
 message EventOddsHistory {
   string event_id = 1;
   string home_name = 2;
@@ -20,15 +19,22 @@ message OddsChange {
   string market_id = 2;
   OddsType odds_type = 3;
   OutcomeSide side = 4;
-  // Exact decimal text; absent means no available quote.
+  // Exact quoted decimal text, retained even when inactive; absent means no quote.
   optional string decimal_odds = 5;
   // Signed decimal text: empty for winning, one value for a single handicap,
   // two source components for a split handicap. Preserve source ordering.
   repeated string handicap = 6;
+  // Derived from event, market and selection flags/status; not just outcome.active.
+  bool active = 7;
 }
 
 enum OddsType {
-  ODDS_TYPE_UNSPECIFIED = 0;
-  ODDS_TYPE_WINNING = 1;
-  ODDS_TYPE_HANDICAP = 2;
+  ODDS_TYPE_WINNING = 0;
+  ODDS_TYPE_HANDICAP = 1;
+}
+
+enum OutcomeSide {
+  OUTCOME_SIDE_HOME = 0;
+  OUTCOME_SIDE_AWAY = 1;
+  OUTCOME_SIDE_DRAW = 2;
 }
