@@ -4,4 +4,6 @@
 //> using exclude "tools"
 //> using dep "org.typelevel::cats-effect:3.7.1"
 //> using dep "com.thesamet.scalapb::scalapb-runtime:0.11.20"
-//> using dep "com.lihaoyi::ujson:4.4.3"
+//> using dep "io.circe::circe-core:0.14.16"
+//> using dep "io.circe::circe-parser:0.14.16"
+//> using test.dep "org.scalameta::munit:1.3.6"

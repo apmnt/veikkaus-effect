@@ -1,51 +1,53 @@
-import cats.effect.{IO, IOApp}
-
-import java.net.URI
-import java.net.http.{HttpClient, HttpRequest, HttpResponse}
+import cats.effect.{ExitCode, IO, IOApp, Resource}
+import cats.syntax.all.*
+import collector.Collector
+import java.net.http.HttpClient
+import java.nio.file.Path
 import java.time.Duration
-import scala.util.Using
+import odds.v1.{OddsChange, OutcomeSide}
+import scala.concurrent.duration.*
 
-object Main extends IOApp.Simple:
-  // The event-list feed may ignore query filters. Check the response explicitly
-  // before using event IDs for any later odds requests.
-  def liveBasketballEvents(body: String): Vector[ujson.Value] =
-    val events = ujson.read(body)("data")("events").arr.toVector
-    events.filter { event =>
-      event.obj.get("category").exists { category =>
-        category.obj.get("code").contains(ujson.Str("BASKETBALL"))
-      } && event.obj.get("liveNow").contains(ujson.Bool(true))
-    }
+object Main extends IOApp:
+  private type Saved = Map[(String, String, OutcomeSide), OddsChange]
 
-  val eventsUri: URI = URI.create(
-    "https://content.ob.veikkaus.fi/content-service/api/v1/q/event-list?lang=fi-FI&liveNow=true"
-  )
-
-  val fetchEvents: IO[HttpResponse[String]] = IO.blocking {
-    Using.resource(
-      HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(10)).build()
-    ) { client =>
-      val request = HttpRequest.newBuilder(eventsUri)
-        .header("Accept", "application/json")
-        .timeout(Duration.ofSeconds(30))
-        .GET()
-        .build()
-
-      client.send(request, HttpResponse.BodyHandlers.ofString())
-    }
-  }
-
-  val run: IO[Unit] =
-    for
-      response <- fetchEvents
-      _ <- IO.println(s"HTTP status: ${response.statusCode()}")
-      _ <-
-        if response.statusCode() == 200 then
-          for
-            events <- IO.delay(liveBasketballEvents(response.body()))
-            _ <- IO.println(s"Live basketball events: ${events.size}")
-            preview = ujson.write(ujson.Arr.from(events), indent = 2).take(1000)
-            _ <- IO.println(s"Basketball JSON preview (first 1,000 characters):\n$preview")
-          yield ()
-        else
-          IO.raiseError(new RuntimeException(s"Veikkaus returned HTTP ${response.statusCode()}"))
-    yield ()
+  def run(args: List[String]): IO[ExitCode] =
+    if args.nonEmpty && args != List("--once") then
+      IO.consoleForIO.errorln("Usage: scala-cli run . -- [--once]").as(ExitCode.Error)
+    else
+      Resource.fromAutoCloseable(IO.delay(
+        HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(10)).build()
+      )).use { client =>
+        val output = Path.of("data/odds.jsonl").toAbsolutePath.normalize()
+        IO.consoleForIO.errorln(s"Collecting Veikkaus basketball odds into $output") *>
+        cats.Monad[IO].tailRecM[Saved, Unit](Map.empty) { saved =>
+          val read = for
+            bodies <- Collector.fetch(client)
+            time <- IO.realTimeInstant
+            events <- IO.fromEither(bodies.traverse(Collector.parse(_, time)).map(_.flatten))
+          yield events
+          read.attempt.flatMap {
+            case Left(error) =>
+              if args == List("--once") then IO.raiseError(error)
+              else IO.consoleForIO.errorln(s"Fetch/parse failed: ${error.getMessage}").as(saved)
+            case Right(events) =>
+              events.foldLeftM((saved, 0)) { case ((current, count), event) =>
+                val changed = event.oddsChanges.filter { change =>
+                  !current.get((event.eventId, change.marketId, change.side)).contains(change.copy(observedAt = None))
+                }
+                if changed.isEmpty then IO.pure((current, count))
+                else Collector.save(output, event.copy(oddsChanges = changed)).as((
+                  current ++ changed.map(change =>
+                    (event.eventId, change.marketId, change.side) -> change.copy(observedAt = None)
+                  ), count + changed.size
+                ))
+              }.flatMap { (next, count) =>
+                val activeIds = events.map(_.eventId).toSet
+                IO.consoleForIO.errorln(s"Collected ${events.size} basketball events; saved $count selection changes")
+                  .as(next.filter { case ((eventId, _, _), _) => activeIds(eventId) })
+              }
+          }.flatMap { next =>
+            if args == List("--once") then IO.pure(Right(()))
+            else IO.sleep(15.seconds).as(Left(next))
+          }
+        }
+      }.as(ExitCode.Success)
