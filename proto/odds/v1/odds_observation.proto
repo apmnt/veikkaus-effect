@@ -1,0 +1,72 @@
+syntax = "proto3";
+
+package odds.v1;
+
+import "google/protobuf/timestamp.proto";
+
+// Observed state of an event's included markets, not a WebSocket patch.
+// Replaces the unpublished draft of individual price observations.
+message EventOddsObservation {
+  // IDs are scoped by provider, e.g. "veikkaus".
+  string provider = 1;
+  string event_id = 2;
+  string event_name = 3;
+  // Collector receipt time, not event start or provider price-change time.
+  google.protobuf.Timestamp observed_at = 4;
+  optional bool is_live = 5;
+  optional string status = 6;
+
+  // From explicitly labelled participants, not splitting event_name.
+  // Unset for events without home/away roles, e.g. golf tournaments.
+  optional string home_name = 7;
+  optional string away_name = 8;
+  google.protobuf.Timestamp starts_at = 9;
+
+  repeated MarketOddsObservation markets = 10;
+  // True only when all source markets are known to be included.
+  // False/absent means omitted markets must not be treated as deleted.
+  optional bool markets_complete = 11;
+  optional bool active = 12;
+  optional bool displayed = 13;
+}
+
+message MarketOddsObservation {
+  string market_id = 1;
+  string market_name = 2;
+  optional string group_code = 3;
+  optional string status = 4;
+  repeated OutcomeOddsObservation outcomes = 5;
+  optional bool active = 6;
+  optional bool displayed = 7;
+  // Same completeness rule as markets_complete, scoped to this market.
+  optional bool outcomes_complete = 8;
+}
+
+message OutcomeOddsObservation {
+  string outcome_id = 1;
+  string outcome_name = 2;
+  // Unspecified for over/under, player props, etc.; name is still retained.
+  OutcomeSide side = 3;
+  optional string status = 4;
+  repeated OddsPrice prices = 5;
+  optional bool active = 6;
+  optional bool displayed = 7;
+  optional string source_sub_type = 8;
+}
+
+message OddsPrice {
+  // Exact decimal text. A retained price does not establish availability.
+  optional string decimal_odds = 1;
+  // Provider category, e.g. "LP"; this does not determine is_live.
+  optional string price_type = 2;
+  // Split lines can have different bounds, e.g. "4.0" and "4.5".
+  optional string handicap_low = 3;
+  optional string handicap_high = 4;
+}
+
+enum OutcomeSide {
+  OUTCOME_SIDE_UNSPECIFIED = 0;
+  OUTCOME_SIDE_HOME = 1;
+  OUTCOME_SIDE_AWAY = 2;
+  OUTCOME_SIDE_DRAW = 3;
+}
